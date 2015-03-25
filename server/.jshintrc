@@ -1,9 +1,10 @@
 {
-  "node": true,
-  "globals": {
-    "describe": true,
-    "it": true,
-    "afterEach": true,
-    "beforeEach": true
-  }
+    "node": true,
+    "esnext": true,
+    "globals": {
+        "describe": true,
+        "it": true,
+        "afterEach": true,
+        "beforeEach": true
+    }
 }
