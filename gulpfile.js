@@ -20,10 +20,10 @@ var additionalArg = process.argv[3] ? process.argv[3].substr(2) : false;
 
 var toInject = [
     'client/app.js',
-    'client/directives/**/*.js', '!client/directives/**/*.spec.js',
-    'client/filters/**/*.js', '!client/filters/**/*.spec.js',
-    'client/services/**/*.js', '!client/services/**/*.spec.js',
-    'client/views/**/*.js', '!client/views/**/*.spec.js',
+    'client/directives/**/*.js', '!client/directives/**/*.{spec,e2e}.js',
+    'client/filters/**/*.js', '!client/filters/**/*.{spec,e2e}.js',
+    'client/services/**/*.js', '!client/services/**/*.{spec,e2e}.js',
+    'client/views/**/*.js', '!client/views/**/*.{spec,e2e}.js',
     'client/styles/css/**/*.css'
 ];
 
@@ -66,7 +66,7 @@ gulp.task('inject', function () {
  */
 var APP_SRC = [
     'client/**/*.js',
-    '!client/**/*.spec.js',
+    '!client/**/*.{spec,e2e}.js',
     '!client/bower_components/**/*',
     '!/lib/**/*'
 ];
