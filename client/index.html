@@ -28,7 +28,7 @@
 
     <div ng-view></div>
 
-    <!-- build:js app.js -->
+    <!-- build:js lib.js -->
 
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
@@ -36,6 +36,11 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <!-- endinject -->
 
+    <!-- inject:jsLib -->
+    <script src="../node_modules/karma-babel-preprocessor/node_modules/babel-core/browser-polyfill.js"></script>
+    <!-- endinject -->
+
+    <!-- build:js2 app.js -->
     <!-- inject:js -->
     <script src="app.js"></script>
     <script src="views/home/home.controller.js"></script>
@@ -44,8 +49,6 @@
     <!-- endinject -->
 
     <!-- endbuild -->
-
-    <script src="http://localhost:35729/livereload.js?snipver=1"></script>
 
   </body>
 </html>
