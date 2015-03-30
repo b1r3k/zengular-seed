@@ -273,14 +273,14 @@ gulp.task('serve', ['watch'], function () {
 gulp.task('preview', ['build'], function () {
     process.env.NODE_ENV = 'production';
 
-    var config = require('./server/config/environment');
+    var config = require('./dist/server/config/environment');
 
     var openOpts = {
         url: 'http://localhost:' + config.port,
         already: false
     };
 
-    require('./server/server');
+    require('./dist/server/server');
     return gulp.src('client/index.html')
         .pipe($.open('', openOpts));
 });
