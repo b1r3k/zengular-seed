@@ -177,6 +177,8 @@ gulp.task('e2e', ['serve'], function () {
     });
 });
 
+gulp.task('e2e:update', $.protractor.webdriver_update);
+
 /**
  * Tests
  */
@@ -305,9 +307,10 @@ gulp.task('babel', function () {
 });
 
 gulp.task('copy:dist', function () {
+    var main = gulp.src(['server/**/*', 'package.json'], { base: './' });
     var assets = gulp.src('client/assets/**/*', { base: './' });
 
-    return sq({ objectMode: true }, assets)
+    return sq({ objectMode: true }, assets, main)
         .pipe(gulp.dest('dist/'));
 });
 
@@ -402,7 +405,7 @@ gulp.task('deploy', ['build'], function () {
             exclude: [],
             include: []
         }
-    }
+    };
 
     return gulp.src(config.src)
         .pipe($.rsync(config.options));
