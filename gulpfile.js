@@ -13,6 +13,7 @@ var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
 var q = require('q');
 var $ = require('gulp-load-plugins')();
+var appPackage = require('./package.json');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -335,17 +336,17 @@ gulp.task('scripts', function () {
     var tpl = gulp.src('client/views/**/*.html')
             .pipe($.angularTemplatecache({
                 root: 'views',
-                module: 'validately'
+                module: appPackage.name
             })),
         directive_tpl = gulp.src('client/directives/**/*.html')
             .pipe($.angularTemplatecache({
                 root: 'directives',
-                module: 'validately'
+                module: appPackage.name
             })),
         common_tpl = gulp.src('client/templates/**/*.html')
             .pipe($.angularTemplatecache({
                 root: 'templates',
-                module: 'validately'
+                module: appPackage.name
             }));
 
     var app = gulp.src('dist/client/app.js').pipe($.ngAnnotate()),
@@ -362,8 +363,10 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('replace', function () {
+    var ngAppRegex = new RegExp('ng-app="' + appPackage.name + '"');
     return gulp.src('dist/client/index.html')
-        .pipe($.replace(/ng-app="validately"/, 'ng-app="validately" ng-strict-di'))
+        .pipe($.plumber())
+        .pipe($.replace(ngAppRegex, 'ng-app="' + appPackage.name + '" ng-strict-di'))
         .pipe(gulp.dest('dist/client'));
 });
 
